@@ -55,9 +55,11 @@ job_market_scraper/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
-
+```
+---
 ## 📊 Features
-
+---
+---
 ### 🔎 Data Collection
 
 Collects job information including:
@@ -71,7 +73,8 @@ Collects job information including:
 - Job description
 - Job URL
 - Scraping timestamp
-
+---
+---
 ### 🧹 Data Cleaning
 
 The pipeline handles:
@@ -82,7 +85,8 @@ The pipeline handles:
 - Datetime conversion
 - Text encoding
 - Salary midpoint calculation
-
+---
+---
 ### ⚙️ Feature Engineering
 
 Additional features include:
@@ -91,7 +95,8 @@ Additional features include:
 - Salary category
 - Work mode
 - Skill frequency
-
+---
+---
 ### 📈 Data Analysis
 
 The project analyzes:
@@ -102,7 +107,8 @@ The project analyzes:
 - Job locations
 - Companies with multiple listings
 - Work-mode distribution
-
+---
+---
 ### 📊 Interactive Dashboard
 
 The Streamlit dashboard provides:
@@ -119,7 +125,8 @@ The Streamlit dashboard provides:
 - Work-mode visualization
 - Automated insights
 - Latest job listings
-
+---
+---
 ## 💰 Salary Data Limitation
 
 Salary information is not available for every job listing.
@@ -129,8 +136,7 @@ The analysis therefore uses only jobs with disclosed salary information when cal
 Jobs without salary information are categorized as:
 
 `Not Disclosed`
-
-
+---
 ## 🚀 Installation
 
 Clone the repository
@@ -142,7 +148,7 @@ git clone https://github.com/rinkitala-commits/job_market_scraper.git
 Go to the project
 
 ```bash
-cd personal-finance-dashboard
+cd job_market_scraper
 ```
 Create a virtual environment
 
@@ -201,15 +207,15 @@ streamlit run dashboard/app.py
 
 ## 📈 Future Improvements
 
--Collect jobs from multiple sources
--Schedule automatic scraping
--Store historical job data
--Add more salary records
--Add NLP-based skill extraction
--Add job-category classification
--Add salary prediction
--Add interactive Plotly visualizations
--Deploy the dashboard online
+- Collect jobs from multiple sources
+- Schedule automatic scraping
+- Store historical job data
+- Add more salary records
+- Add NLP-based skill extraction
+- Add job-category classification
+- Add salary prediction
+- Add interactive Plotly visualizations
+- Deploy the dashboard online
 
 ---
 
