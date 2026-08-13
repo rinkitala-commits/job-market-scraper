@@ -101,10 +101,15 @@ if salary_range > 0:
 
 st.title("💼 Job Market Analytics Dashboard")
 
-st.write(
-    "Explore job listings, salaries, locations, "
-    "companies, and skill demand."
+st.markdown(
+    """
+    **Explore real-world job market data using Python and Data Science.**
+
+    Analyze job listings, salary trends, skills, locations, companies,
+    and work modes through an interactive dashboard.
+    """
 )
+st.divider()
 
 
 # -----------------------------
@@ -113,17 +118,19 @@ st.write(
 
 total_jobs = len(filtered_df)
 
-jobs_with_salary = df[
-    df["salary_min"].notna()
-    & df["salary_max"].notna()
+jobs_with_salary = filtered_df[
+    filtered_df["salary_min"].notna()
+    & filtered_df["salary_max"].notna()
 ]
 
 salary_disclosure_rate = (
     len(jobs_with_salary) / total_jobs * 100
+    if total_jobs > 0
+    else 0
 )
 
 
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
 
 with col1:
     st.metric(
@@ -142,6 +149,79 @@ with col3:
         "Salary Disclosure",
         f"{salary_disclosure_rate:.1f}%"
     )
+with col4:
+    if not jobs_with_salary.empty:
+        average_salary = jobs_with_salary[
+            "salary_midpoint"
+        ].mean()
+        st.metric(
+            "Average Salary",
+            f"${average_salary:,.0f}"
+        )
+    else:
+        st.metric(
+            "Average Salary",
+            "N/A"
+        )
+
+# -----------------------------
+# Dataset Summary
+# -----------------------------
+
+st.header("📊 Dataset Summary")
+
+summary_col1, summary_col2, summary_col3 = st.columns(3)
+
+with summary_col1:
+    st.metric(
+        "Companies",
+        filtered_df["company"].nunique()
+    )
+
+with summary_col2:
+    st.metric(
+        "Locations",
+        filtered_df["location"].nunique()
+    )
+
+with summary_col3:
+    st.metric(
+        "Skills Tracked",
+        skill_df["skill"].nunique()
+    )
+
+# -----------------------------
+# Job Market Overview
+# -----------------------------
+
+st.header("📊 Job Market Overview")
+
+overview_col1, overview_col2 = st.columns(2)
+
+with overview_col1:
+
+    st.subheader("🏢 Jobs by Work Mode")
+
+    work_mode_overview = (
+        filtered_df["work_mode"]
+        .fillna("Not Specified")
+        .value_counts()
+    )
+
+    st.bar_chart(work_mode_overview)
+
+with overview_col2:
+
+    st.subheader("📍 Jobs by Location")
+
+    location_overview = (
+        filtered_df["location"]
+        .fillna("Unknown")
+        .value_counts()
+        .head(10)
+    )
+
+    st.bar_chart(location_overview)
 
 
 # -----------------------------
@@ -151,7 +231,8 @@ with col3:
 st.header("📋 Job Listings")
 
 search = st.text_input(
-    "Search job title or company"
+    "🔍 Search Jobs",
+    placeholder="Search by job title or company..."
 )
 
 
@@ -171,6 +252,11 @@ if search:
             na=False
         )
     ]
+
+st.caption(
+    f"Showing {len(filtered_df)} matching job(s)"
+)
+
 
 if filtered_df.empty:
 
@@ -203,11 +289,11 @@ else:
             ),
             "salary_min": st.column_config.NumberColumn(
                 "Minimum Salary",
-                format="$%d"
+                format="%d"
             ),
             "salary_max": st.column_config.NumberColumn(
                 "Maximum Salary",
-                format="$%d"
+                format="%d"
             )
         },
         hide_index=True
@@ -387,6 +473,20 @@ work_mode_counts = (
 st.bar_chart(
     work_mode_counts
 )
+
+# -----------------------------
+# Salary Category Analysis
+# -----------------------------
+
+st.header("💵 Salary Category Distribution")
+
+salary_category_counts = (
+    filtered_df["salary_category"]
+    .fillna("Not Disclosed")
+    .value_counts()
+)
+
+st.bar_chart(salary_category_counts)
 # -----------------------------
 # Salary Analysis
 # -----------------------------
@@ -419,19 +519,19 @@ else:
     with col1:
         st.metric(
             "Average Minimum Salary",
-            f"${avg_min:,.0f}"
+            f"{avg_min:,.0f}"
         )
 
     with col2:
         st.metric(
             "Average Maximum Salary",
-            f"${avg_max:,.0f}"
+            f"{avg_max:,.0f}"
         )
 
     with col3:
         st.metric(
             "Average Salary Midpoint",
-            f"${avg_midpoint:,.0f}"
+            f"{avg_midpoint:,.0f}"
         )
 
     st.dataframe(
@@ -469,4 +569,21 @@ st.bar_chart(
     salary_chart.set_index("job_title")[
         "salary_midpoint"
     ]
+)
+
+# -----------------------------
+# Footer
+# -----------------------------
+
+st.divider()
+
+st.markdown(
+    """
+    <div style="text-align: center; padding: 20px;">
+        <p>💼 <strong>Job Market Analytics Dashboard</strong></p>
+        <p>Built with Python, Pandas, Matplotlib & Streamlit</p>
+        <p>👩‍💻 Jhumarani Tala | B.Tech Data Science Student</p>
+    </div>
+    """,
+    unsafe_allow_html=True
 )

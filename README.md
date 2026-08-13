@@ -135,7 +135,7 @@ Jobs without salary information are categorized as:
 Clone the repository
 
 ```bash
-git clone https://github.com/rinkitala-commits/job_market_scraper.git
+git clone https://github.com/rinkitala-commits/job-market-scraper.git
 ```
 
 Go to the project
