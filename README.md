@@ -56,7 +56,13 @@ job_market_scraper/
 ├── .gitignore
 └── README.md
 ```
-## 📊 Features
+## 🌐 Live Demo
+
+🚀 **Interactive Dashboard:**
+
+https://job-market-scraper-dyzsze39eukarbuwpkukdb.streamlit.app/
+
+## 👩‍💻 Author
 ---
 ### 🔎 Data Collection
 
