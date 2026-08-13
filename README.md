@@ -56,9 +56,7 @@ job_market_scraper/
 ├── .gitignore
 └── README.md
 ```
----
 ## 📊 Features
----
 ---
 ### 🔎 Data Collection
 
@@ -74,7 +72,6 @@ Collects job information including:
 - Job URL
 - Scraping timestamp
 ---
----
 ### 🧹 Data Cleaning
 
 The pipeline handles:
@@ -86,7 +83,6 @@ The pipeline handles:
 - Text encoding
 - Salary midpoint calculation
 ---
----
 ### ⚙️ Feature Engineering
 
 Additional features include:
@@ -95,7 +91,6 @@ Additional features include:
 - Salary category
 - Work mode
 - Skill frequency
----
 ---
 ### 📈 Data Analysis
 
@@ -107,7 +102,6 @@ The project analyzes:
 - Job locations
 - Companies with multiple listings
 - Work-mode distribution
----
 ---
 ### 📊 Interactive Dashboard
 
@@ -125,7 +119,6 @@ The Streamlit dashboard provides:
 - Work-mode visualization
 - Automated insights
 - Latest job listings
----
 ---
 ## 💰 Salary Data Limitation
 
@@ -202,7 +195,6 @@ streamlit run dashboard/app.py
                 Visualization
                     ↓
                 Streamlit Dashboard
----
 ---
 
 ## 📈 Future Improvements
